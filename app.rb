@@ -63,12 +63,10 @@ end
 
   put "/posts/:id" do
   @post = Post.find(params[:id])
-  if @post.update_attributes(params[:post])
-    redirect "/posts/#{@post.id}"
-  else
-    erb :"posts/edit"
+    if @post.update_attributes(params[:post])
+      redirect "/posts/#{@post.id}"
+    else
+      erb :"posts/edit"
+    end
   end
-end
-
-end
 
