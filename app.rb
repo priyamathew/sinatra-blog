@@ -55,4 +55,20 @@ end
     erb :"posts/view"
   end 
 
+  get "/posts/:id/edit" do
+    @post = Post.find(params[:id])
+    @title = "Edit Form"
+    erb :"posts/edit"
+  end
+
+  put "/posts/:id" do
+  @post = Post.find(params[:id])
+  if @post.update_attributes(params[:post])
+    redirect "/posts/#{@post.id}"
+  else
+    erb :"posts/edit"
+  end
+end
+
+end
 

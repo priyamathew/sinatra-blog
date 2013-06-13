@@ -3,6 +3,7 @@
    <li>
      <h4><a href="/posts/<%= post.id %>"><%= post.title %></a></h4>
      <p>Created: <%= post.created_at %></p>
+     <p><a href="/posts/<%= post.id %>/edit">Edit Post</a></p>
    </li>
  <% end %>
  </ul>
