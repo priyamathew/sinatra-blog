@@ -43,15 +43,6 @@ end
 
   post "/posts" do 
 
-    @post = Post.new(params[:post])
-    params[:post].each |key, value| do
-      @post.send(key, value)
-    end
-    @post.title = params[:post][:title]
-    @post.body = esc_body_text
-
-
-
     @post = Post.new 
     title_text = params[:post][:title]
     body_text  = params[:post][:body]
