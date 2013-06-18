@@ -42,7 +42,24 @@ end
   end
 
   post "/posts" do 
-    @post = Post.new(params[:post]) 
+
+    @post = Post.new(params[:post])
+    params[:post].each |key, value| do
+      @post.send(key, value)
+    end
+    @post.title = params[:post][:title]
+    @post.body = esc_body_text
+
+
+
+    @post = Post.new 
+    title_text = params[:post][:title]
+    body_text  = params[:post][:body]
+    esc_title_text = h(title_text)
+    esc_body_text = h(body_text)
+
+    @post.title = esc_title_text
+    @post.body = esc_body_text
     if @post.save 
       redirect "posts/#{@post.id}", :notice => 'Congrats! Love the new post.' 
     else redirect "posts/create", :error => 'Error, something went wrong. Maybe a blank post? Try again'  
